@@ -58,12 +58,69 @@ class B(A):
     def print_name(self):
         print(self.sname)
 class C(B):
-    def print_mess(self):
+    def print_mess():
         print("hello this is c class")
 
-ob=B("nimesh")
-ob.print_name()
+p1=B("nimesh")
+p1.print_name()
 
+#multilevel
+class Grandfather:
+ 
+    def __init__(self, grandfathername):
+        self.grandfathername = grandfathername
+ 
+# Intermediate class
+class Father(Grandfather):
+    def __init__(self, fathername, grandfathername):
+        self.fathername = fathername
+ 
+        # invoking constructor of Grandfather class
+        Grandfather.__init__(self, grandfathername)
+ 
+# Derived class
+class Son(Father):
+    def __init__(self,sonname, fathername, grandfathername):
+        self.sonname = sonname
+ 
+        # invoking constructor of Father class
+        Father.__init__(self, fathername, grandfathername)
+ 
+    def print_name(self):
+        print('Grandfather name :', self.grandfathername)
+        print("Father name :", self.fathername)
+        print("Son name :", self.sonname)
+ 
+#  Driver code
+s1 = Son('Prince', 'Rampal', 'Lal mani')
+print(s1.grandfathername)
+s1.print_name()
+
+
+
+#multiple inheritance
+class Class1: 
+    def m(self): 
+        print("In Class1")    
+      
+class Class2(Class1): 
+    def m(self): 
+        print("In Class2") 
+        Class1.m(self) 
+  
+class Class3(Class1): 
+    def m(self): 
+        print("In Class3") 
+        Class1.m(self)    
+       
+class Class4(Class2, Class3): 
+    def m(self): 
+        print("In Class4")    
+        Class2.m(self) 
+        Class3.m(self) 
+       
+obj = Class4() 
+obj.m() 
 
 #overiding
 class Robot:
